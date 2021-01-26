@@ -1,28 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 
-export default class BookList extends Component {
-  // constructor() {
-  //   super()
-
-  // }
-
-
-  render() {
-    // console.log(this.props.search)
-    let mappedBooks = this.props.books.filter( ( book ) => book.title.toLowerCase().includes( this.props.search.toLowerCase() ) )
-    .map((b, i) => <section className="book" key={ i } > 
+export default function BookList (props) {
   
-    <img src={ b.img } alt="book cover" onClick={ e => this.props.add(b.title) } />
+  let mappedBooks = props.books.filter( ( book ) => book.title.toLowerCase().includes( props.search.toLowerCase() ) )
+    .map((b, i) => <section className="book" key={ i } > 
+    <img src={ b.img } alt="book cover" onClick={ e => props.add(b.title) } />
     <p>{ b.title }</p>
     <p>{ b.author }</p> 
     </section>)
 
-
-    return (
-      <div className='book-wrap'>
+    // console.log(this.props.search)
+    return <div className='book-wrap'>
           { mappedBooks }
       </div>
-    )
-  }
 }
